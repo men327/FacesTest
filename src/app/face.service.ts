@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-//import { Http, Response } from '@angular/http';
-/*import 'rxjs/add/operator/map';
-import 'rxjs/Rx';*/
 
 @Injectable()
 export class FaceService {
   
   constructor (private _http: Http) {}
-   
+
   public getListFaces() {
     let headers = new Headers({ 'Access-Control-Allow-Headers': 'Content-Type'});
     let options = new RequestOptions({ headers: headers });
@@ -17,6 +14,11 @@ export class FaceService {
     .map((res: Response) => res.json());
   }
 
-  
+  public getFace() {
+    let headers = new Headers({ 'Access-Control-Allow-Headers': 'Content-Type'});
+    let options = new RequestOptions({ headers: headers });
+    return this._http.get('https://api.adorable.io/avatars/face/eyes2/nose5/mouth2/8e8895')
+    .map((res: Response) => res);
+  }
 
 }
