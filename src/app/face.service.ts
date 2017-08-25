@@ -27,7 +27,7 @@ export class FaceService {
   public getColors() {
     let headers = new Headers({ 'Access-Control-Allow-Headers': 'Content-Type'});
     let options = new RequestOptions({ headers: headers });
-    return this._http.get('http://localhost:3000/colors')
+    return this._http.get('http://localhost:3000/colors', options)
     .map((res: Response) => res.json());
   }
 
@@ -35,7 +35,7 @@ export class FaceService {
   public getColorsSize(size) {
     let headers = new Headers({ 'Access-Control-Allow-Headers': 'Content-Type'});
     let options = new RequestOptions({ headers: headers });
-    return this._http.get('http://localhost:3000/colors/'+size)
+    return this._http.get('http://localhost:3000/colors/'+size, options)
     .map((res: Response) => res.json());
   }
 
