@@ -14,10 +14,10 @@ export class FaceService {
     .map((res: Response) => res.json());
   }
 
-  public getFace() {
+  public getFace(eye, nose, mouth, color) {
     let headers = new Headers({ 'Access-Control-Allow-Headers': 'Content-Type'});
     let options = new RequestOptions({ headers: headers });
-    return this._http.get('https://api.adorable.io/avatars/face/eyes2/nose5/mouth2/8e8895')
+    return this._http.get('https://api.adorable.io/avatars/face/'+eye+'/'+nose+'/'+mouth+'/'+color, options)
     .map((res: Response) => res);
   }
 

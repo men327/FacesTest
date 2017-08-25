@@ -11,26 +11,29 @@ export class AppComponent {
   title = 'app';  
   face: any;
 
-  private eyes: any =[];
-  private mouth: any =[];
-  private nose: any =[];
+  private Eyes: any =[];
+  private Mouths: any =[];
+  private Noses: any =[];
+  private Colors: any =['ff5733', '44ec1a', '1abfec', '8e8895', 'ee7d7d', 'a14df0', '4d52f0', 'f0eb4d'];
 
   constructor(private faces: FaceService){
     faces.getListFaces().subscribe(data => {
-      this.eyes = data.face.eyes;
-      this.mouth = data.face.mouth;
-      this.nose = data.face.nose;
+      this.Eyes = data.face.eyes;
+      this.Mouths = data.face.mouth;
+      this.Noses = data.face.nose;
     });    
 
-    Observable.interval(2000).subscribe(x => {
-        
-      var indexEye = Math.round(this.eyes.length*Math.random());
-      var indexMouth = Math.round(this.eyes.length*Math.random());
-      var indexNose = Math.round(this.eyes.length*Math.random());
+    Observable.interval(2000).subscribe(x => {        
+      var indexEye = Math.round(this.Eyes.length*Math.random());
+      var indexMouth = Math.round(this.Mouths.length*Math.random());
+      var indexNose = Math.round(this.Noses.length*Math.random());
+      var indexColor = Math.round(this.Colors.length*Math.random());
 
-      this.face = 'https://api.adorable.io/avatars/face/'+this.eyes[indexEye]+'/'+this.nose[indexNose]+'/'+this.mouth[indexMouth]+'/8e8895';          
+      this.face = 'https://api.adorable.io/avatars/face/'+this.Eyes[indexEye]+'/'+this.Noses[indexNose]+'/'+this.Mouths[indexMouth]+'/'+this.Colors[indexColor];
+      faces.getFace(this.Eyes[indexEye], this.Noses[indexNose], this.Mouths[indexMouth], this.Colors[indexColor])
+        .subscribe(data => {
+        console.log(data.text());
+        });
     });
-  } 
-
-
+  }
 }
