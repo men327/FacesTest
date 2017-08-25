@@ -21,4 +21,11 @@ export class FaceService {
     .map((res: Response) => res);
   }
 
+  public getColors() {
+    let headers = new Headers({ 'Access-Control-Allow-Headers': 'Content-Type'});
+    let options = new RequestOptions({ headers: headers });
+    return this._http.get('http://localhost:3000/colors')
+    .map((res: Response) => res.json());
+  }
+
 }
